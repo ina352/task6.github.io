@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Calculator</h1>
+    <input type="text" id="input_button">
+    <div>
+        <div>
+            <button type="button" onclick="onKeyClicked('7')">7</button>
+            <button type="button" onclick="onKeyClicked('8')">8</button>
+            <button type="button" onclick="onKeyClicked('9')">9</button>
+            <button type="button" onclick="onKeyClicked('+')">+</button>
+        </div>
+        <div>
+            <button type="button" onclick="onKeyClicked('4')">4</button>
+            <button type="button" onclick="onKeyClicked('5')">5</button>
+            <button type="button" onclick="onKeyClicked('6')">6</button>
+            <button type="button" onclick="onKeyClicked('-')">-</button>
+        </div>
+        <div>
+            <button type="button" onclick="onKeyClicked('1')">1</button>
+            <button type="button" onclick="onKeyClicked('2')">2</button>
+            <button type="button" onclick="onKeyClicked('3')">3</button>
+            <button type="button" onclick="onKeyClicked('*')">*</button>
+        </div>
+        <div>
+            <button type="button" onclick="onKeyClicked('C')">C</button>
+            <button type="button" onclick="onKeyClicked('0')">0</button>
+            <button type="button" onclick="onKeyClicked('/')">/</button>
+            <button type="button" onclick="onKeyClicked('=')">=</button>
+        </div>
+    </div>
+    <input type="text" id="output" disabled value="" />
+
+    <script>
+
+        let input = "";
+
+        function press(value){
+            input += value;
+            document.getElementById('input_button').value = input;
+        }
+
+        function caculate(){
+            try{
+                input = eval(input).toString();
+                document.getElementById('output').value = input;
+            } catch(e){
+                document.getElementById('output') = "오류";
+                input = "";
+            }
+        }
+
+        function clearOutput(){
+            input="";
+            document.getElementById('output').value=""
+        }
+
+        function onKeyClicked(value){
+            if(value === 'C'){
+                clearOutput();
+                document.getElementById('input_button').value="";
+            }else if(value === '='){
+                caculate();
+            }else{
+                input += value;
+                document.getElementById('input_button').value = input;
+            }
+        }
+    </script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+</body>
+</html>
